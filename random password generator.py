@@ -18,17 +18,21 @@ all = let_up+let_low+dig+chr
 def myappUi():
     global ent
     global lbl
+    global scl
 
     myapp = tkinter.Tk()
     myapp.title("Random Password Generator")
     myapp.geometry('400x300')
     myapp.resizable(0,0)
-    
+    myapp.iconbitmap('lock.ico')
     myapp.config(bg="#12181E")
-    tkinter.Label(myapp,text="Random Password Generator",font=("default",15),fg='cyan',bg='#12181E').pack(pady=8)
+    tkinter.Label(myapp,text="Random Password Generator",font=("default",15),fg='#0288A3',bg='#12181E').pack(pady=8)
     
     ent = tkinter.Entry(myapp,width=22,state="normal",bg="gray",fg="#51E79D",justify="center")
     ent.pack(ipady=10,pady=20)
+
+    scl = tkinter.Scale(myapp, from_=4, to=18,orient='horizontal', length= 130,bg='#12181E',fg='#51E79D',highlightbackground='#12181E')
+    scl.pack()
     
     lbl = tkinter.Label(text='',fg='cyan',bg="#12181E")
     lbl.pack()
@@ -48,7 +52,7 @@ def myappUi():
 def gen ():
     lbl.configure(text='')
     ent.delete(0,END)
-    sum = random.choices(all,k=17)
+    sum = random.choices(all,k=scl.get())
     password = ''
     for i in sum :
         password+= i
