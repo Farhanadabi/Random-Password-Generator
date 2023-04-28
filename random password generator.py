@@ -1,8 +1,11 @@
 import random
 import tkinter
+import os,sys
 from tkinter import END
 import string
 import time
+from PIL import Image,ImageTk
+
 
 chr=list('!@#*$')
 
@@ -14,17 +17,28 @@ dig=list(string.digits)
 
 all = let_up+let_low+dig+chr
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 def myappUi():
     global ent
     global lbl
     global scl
-
+    
     myapp = tkinter.Tk()
     myapp.title("Random Password Generator")
     myapp.geometry('400x300')
     myapp.resizable(0,0)
-    myapp.iconbitmap('lock.ico')
+    
+    myapp.iconbitmap(resource_path('lock.ico'))
     myapp.config(bg="#12181E")
     tkinter.Label(myapp,text="Random Password Generator",font=("default",15),fg='#0288A3',bg='#12181E').pack(pady=8)
     
@@ -69,6 +83,7 @@ def copy(x):
 
 def t():
     lbl.configure(text='')
+    
+
 
 myappUi()
-
