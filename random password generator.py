@@ -4,7 +4,6 @@ import os,sys
 from tkinter import END
 import string
 import time
-from PIL import Image,ImageTk
 
 
 chr=list('!@#*$')
